@@ -15,8 +15,8 @@ class SingleServer extends Simulation {
 
   private val scn = scenario("Testing Single Server")
     .exec(http("product_request").get("/api/product"))
-    .exec(http("cart_request").get("/api/cart"))
     .exec(http("cart_add").post("/api/cart/1"))
+    .exec(http("cart_request").get("/api/cart"))
     .exec(http("checkout").post("/api/cart"))
 
   setUp(scn.inject(atOnceUsers(1000)).protocols(httpProtocol))
