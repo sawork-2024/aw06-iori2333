@@ -22,7 +22,7 @@ public class PosProductsApplication {
     }
 
     @Bean
-    public Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {
+    public Customizer<ReactiveResilience4JCircuitBreakerFactory> cbFactory() {
         return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
             .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
             .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build())

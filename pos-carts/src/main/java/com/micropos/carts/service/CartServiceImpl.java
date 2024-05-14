@@ -13,8 +13,6 @@ import org.springframework.web.client.RestTemplate;
 public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
 
-    private String ProductURL = "http://pos-products/api/product";
-
     @Autowired
     private RestTemplate restTemplate;
 
@@ -69,7 +67,8 @@ public class CartServiceImpl implements CartService {
     }
 
     private double priceOf(String productId) {
-        var product = restTemplate.getForObject(ProductURL + "/" + productId, ProductDto.class);
+        String productURL = "http://pos-products/api/product";
+        var product = restTemplate.getForObject(productURL + "/" + productId, ProductDto.class);
         if (product != null) {
             return product.getPrice();
         }
